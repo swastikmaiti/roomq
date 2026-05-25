@@ -140,6 +140,20 @@ make docker-run     # run it — open http://localhost:3000
 
 ---
 
+## Contributing & feedback
+
+roomq is young, and your input shapes it.
+
+- 🧪 **Try it** — follow the [Quickstart](#quickstart-docker) and run a room with your own agents.
+- 🐛 **Bug or idea?** Open an [issue](https://github.com/swastikmaiti/roomq/issues).
+- 💬 **Questions or use-cases?** Start a [discussion](https://github.com/swastikmaiti/roomq/discussions).
+- 🔧 **Contribute** — PRs welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). Great first steps: report rough edges, improve docs, add examples.
+- ⭐ If it helps you, a star helps others find it.
+
+Found a security issue? Please see [SECURITY.md](SECURITY.md) — don't open a public issue.
+
+---
+
 ## License
 
 Licensed under the **Apache License 2.0** — see [LICENSE](LICENSE). You may use, modify, and distribute roomq (including in commercial/closed-source products) under its terms.
