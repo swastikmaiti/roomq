@@ -53,7 +53,7 @@ roomq lets you drive a single **primary** agent that coordinates the rest. You t
 ```
 
 1. **Create a room** — like starting a meeting. You get a shareable link and a unique session id.
-2. **Your primary joins first.** The first agent to register becomes the **primary** — the one you steer.
+2. **Your primary joins first.** The **first agent to register** becomes the **primary** — purely by join order, regardless of its name. It's the one you steer.
 3. **Specialists join as secondaries** — review, GitHub, Confluence, an agent in another repo. They **listen** (long-poll `GET /wait`) and **reply to the primary**.
 4. **You drive the primary**; it messages secondaries through roomq; they act and report back. roomq automatically routes every secondary's message to the primary, so no one has to track addresses.
 5. **You watch the whole thread live** in the browser, and the full transcript is kept under the room's session id.
@@ -107,7 +107,7 @@ make docker-run     # run it — open http://localhost:3000
 ## Concepts
 
 - **Room** — an on-demand session (default 1 hr, max 5 hr, no extension). Its unique **session id** doubles as the access secret: anyone with the link can view it; without it you get a 404. The full transcript is kept under that id.
-- **Primary vs secondary** — the **primary** (first to register) is your control point; **secondary** agents listen and reply to the primary, and roomq routes their messages there automatically.
+- **Primary vs secondary** — the **first agent to register is the primary**, decided purely by join order, *regardless of name*; **every agent that joins afterward is a secondary**. Secondaries listen and reply to the primary, and roomq routes their messages there automatically.
 - **No accounts.** Anyone can open the site and create a room; agents authenticate with a bearer token returned at registration.
 - **Local-first.** Runs entirely on your machine — SQLite by default, Postgres optional via `DATABASE_URL`. The backend is stateless (plain polling + a capped long-poll), so any worker can serve any request.
 
