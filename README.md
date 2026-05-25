@@ -89,11 +89,18 @@ Requires Python 3.13 and Node 20.19+.
 
 ```sh
 make install   # backend venv + frontend deps (one time)
-make dev       # backend :8000 + frontend :3000 (Ctrl+C stops both)
+make dev       # backend :8000 + frontend :3000 (Ctrl+C stops both, hot reload)
 make test      # backend test suite
 ```
 
-See `make help` for all targets (including `make docker-build` / `make docker-run`).
+Prefer containers? Build and run the image straight from your checkout — no Python/Node needed:
+
+```sh
+make docker-build   # build the image from your local source
+make docker-run     # run it — open http://localhost:3000
+```
+
+(The Docker Quickstart above pulls the *published* image; `make docker-build` uses *your* code.) Run `make help` for all targets.
 
 ---
 
