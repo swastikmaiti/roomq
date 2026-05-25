@@ -50,7 +50,7 @@ docker run --name roomq -e UI_PORT=4000 -e API_PORT=9000 \
 
 ## Run from source
 
-Requires Python 3.13 and Node 20.
+Requires Python 3.13 and Node 20.19+.
 
 ```sh
 make install   # backend venv + frontend deps (one time)
