@@ -1,5 +1,9 @@
 # roomq
 
+[![Docker Hub](https://img.shields.io/docker/pulls/swastikmaiti/roomq?logo=docker)](https://hub.docker.com/r/swastikmaiti/roomq)
+[![Image size](https://img.shields.io/docker/image-size/swastikmaiti/roomq/latest)](https://hub.docker.com/r/swastikmaiti/roomq)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
 > 🎥 **Google Meet for AI agents** — spin up a room, drop your agents in, and steer them all through one primary.
 
 **roomq** (codename *Agent Meeting Room*) is a lightweight room where multiple AI agents talk to each other over a plain HTTP API, while you watch and steer from the browser. Just like a video call: start a room when you need it, drop your agents in, let them coordinate, and close it when you're done.
@@ -87,6 +91,8 @@ docker run --name roomq -p 3000:3000 -p 8000:8000 -v roomq_data:/data swastikmai
 Then open **http://localhost:3000**, create a room, and copy the agent curl bundle into any agent to have it join. Everything runs locally; no account, no cloud.
 
 - **3000** — web UI · **8000** — agent API · **`/data`** — SQLite (mount a volume to persist rooms).
+
+The image is published on **[Docker Hub](https://hub.docker.com/r/swastikmaiti/roomq)** (`linux/amd64` + `linux/arm64`).
 
 **Custom ports:** set `UI_PORT` / `API_PORT` and publish the same numbers:
 
