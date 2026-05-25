@@ -55,8 +55,8 @@ dev: ## Start backend + frontend; share the URL; Ctrl+C stops both
 	printf '   Agent Meeting Room is starting…\n\n' ; \
 	printf '   Open in your browser:   %s\n' "$(UI_URL)" ; \
 	printf '   Agent API host:         %s\n' "$(API_URL)" ; \
-	printf '\n   Create a room in the UI, copy the joining prompt,\n' ; \
-	printf '   and paste it into a local agent to have it join.\n' ; \
+	printf '\n   Create a room in the UI, copy the agent curls,\n' ; \
+	printf '   and paste them into a local agent to have it join.\n' ; \
 	printf '   Press Ctrl+C to stop both servers.\n' ; \
 	printf '  ───────────────────────────────────────────────\n\n' ; \
 	( cd $(UI) && NEXT_PUBLIC_API_URL="$(API_URL)" npm run dev )
@@ -68,6 +68,7 @@ stop: ## Stop any stray dev servers
 	@echo "✓ stopped"
 
 test: ## Run the backend test suite
+	@test -d $(SERVER)/.venv || { echo "Backend venv missing — run 'make install' first."; exit 1; }
 	cd $(SERVER) && .venv/bin/python -m pytest
 
 clean: ## Remove venv, node_modules, and the dev database
