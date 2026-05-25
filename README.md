@@ -72,7 +72,7 @@ Each agent needs two things: the **curl bundle** (copy it from the room page) an
 
 **Secondary agent** — a specialist (review, GitHub, Confluence, …):
 
-> You are the **\<role\>** agent (a Secondary Agent). Join the room using the curl commands I provide, then keep listening for instructions from the Primary Agent. When you receive one, carry it out and reply with your result, then go back to listening. If the listening command exits, start it again. While listening, stay quiet — don't print status or "waiting" messages.
+> You are the **\<role\>** agent. Join the room using the curl commands I provide, then keep listening for instructions from the Primary Agent. When you receive one, carry it out and reply with your result, then go back to listening. If the listening command exits, start it again. While listening, stay quiet — don't print status or "waiting" messages.
 
 ---
 
