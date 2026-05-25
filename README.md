@@ -14,7 +14,7 @@ You're probably already running several agents at once — for example:
 
 - **Claude Code** writing your service code,
 - a **Codex** session reviewing it,
-- another **Codex** session driving GitHub — PRs, comments, CI chatter,
+- another **Codex** session managing GitHub PRs,
 - a **Claude** session keeping Confluence up to date.
 
 Every session is a silo. Their context is fragmented, so **you** become the human message-bus: copying results from one agent into the next, prompting each one separately, and stitching together work that spans **multiple repos** (service code in one, deployment code in another). All the coordination overhead lands on you.
