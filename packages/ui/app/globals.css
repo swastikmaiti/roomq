@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+/* Thin, theme-aware scrollbars for the message feed. */
+* {
+  scrollbar-width: thin;
+}

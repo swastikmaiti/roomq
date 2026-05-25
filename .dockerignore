@@ -1,0 +1,37 @@
+# Build context for the root (all-in-one local) Dockerfile.
+#
+# Deny everything, then re-include ONLY the application source the local image
+# needs. This makes it impossible for secrets/, infra/, deploy scripts, docs, or
+# Cloudflare artifacts (.vercel, .wrangler, wrangler.toml) to enter the image —
+# even files added later. Per-package builds use their own .dockerignore.
+*
+
+# --- Backend: app + migrations + deps only (no tests, db, venv, .env) ---
+!packages
+packages/*
+!packages/server
+packages/server/*
+!packages/server/app
+!packages/server/alembic
+!packages/server/alembic.ini
+!packages/server/requirements.txt
+
+# --- Frontend: source + configs only ---
+!packages/ui
+packages/ui/*
+!packages/ui/app
+!packages/ui/components
+!packages/ui/lib
+!packages/ui/package.json
+!packages/ui/package-lock.json
+!packages/ui/next.config.mjs
+!packages/ui/postcss.config.mjs
+!packages/ui/tailwind.config.ts
+!packages/ui/tsconfig.json
+!packages/ui/next-env.d.ts
+
+# --- Re-exclude compiled junk that may sit inside whitelisted dirs ---
+**/__pycache__
+**/*.pyc
+**/.DS_Store
+**/._*

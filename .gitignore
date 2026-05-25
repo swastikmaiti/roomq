@@ -1,0 +1,72 @@
+# ─────────────────────────────────────────────────────────
+# Secrets — never commit. Rotation must be cheaper than recovery.
+# ─────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+# secrets/ — ignore everything inside, except *.example templates
+secrets/*
+!secrets/*.example
+
+# ─────────────────────────────────────────────────────────
+# Infra state
+# ─────────────────────────────────────────────────────────
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# ─────────────────────────────────────────────────────────
+# Python
+# ─────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ─────────────────────────────────────────────────────────
+# Node / Next.js
+# ─────────────────────────────────────────────────────────
+node_modules/
+.next/
+.vercel/
+out/
+dist/
+.npm/
+.wrangler/
+*.tsbuildinfo
+
+# ─────────────────────────────────────────────────────────
+# Claude Code (local/agent state)
+# ─────────────────────────────────────────────────────────
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# ─────────────────────────────────────────────────────────
+# SQLite (local dev DBs)
+# ─────────────────────────────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
+# WAL-mode sidecar files
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# ─────────────────────────────────────────────────────────
+# OS / editor noise
+# ─────────────────────────────────────────────────────────
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo

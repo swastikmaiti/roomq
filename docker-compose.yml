@@ -1,0 +1,29 @@
+# Local development stack: the stateless API (SQLite on a named volume) plus the
+# Next.js UI. The browser reaches the API via the published port, so the UI's
+# build-time NEXT_PUBLIC_API_URL points at localhost:8000.
+
+services:
+  api:
+    build: ./packages/server
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////data/roomq.db
+      API_BASE_URL: http://localhost:8000
+      UI_BASE_URL: http://localhost:3000
+      CORS_ORIGINS: http://localhost:3000
+    volumes:
+      - roomq_data:/data
+
+  ui:
+    build:
+      context: ./packages/ui
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  roomq_data:

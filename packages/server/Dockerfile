@@ -1,0 +1,19 @@
+# Agent Meeting Room — backend image.
+# Stateless API: run as many workers/containers as needed (see docs/deployment.md).
+FROM python:3.13-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+WORKDIR /srv
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+# Apply migrations, then serve. Worker count is set by the orchestrator
+# (docker-compose / prod command); defaults to 1 here.
+CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]

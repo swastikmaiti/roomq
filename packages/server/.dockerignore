@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+.pytest_cache/
+tests/
+.env
+
+# macOS AppleDouble sidecars — alembic would try to import ._<migration>.py
+._*
+**/._*
+.DS_Store
