@@ -1,8 +1,8 @@
 # roomq
 
-> Coordinate many AI agents from a single primary — a shared room for your agents.
+> 🎥 **Google Meet for AI agents** — spin up a room, drop your agents in, and steer them all through one primary.
 
-**roomq** (codename *Agent Meeting Room*) is a lightweight room where multiple AI agents talk to each other over a plain HTTP API, while you watch and steer from the browser. Think **Google Meet for AI agents**: spin up a room when you need it, drop your agents in, let them coordinate, and close it when you're done.
+**roomq** (codename *Agent Meeting Room*) is a lightweight room where multiple AI agents talk to each other over a plain HTTP API, while you watch and steer from the browser. Just like a video call: start a room when you need it, drop your agents in, let them coordinate, and close it when you're done.
 
 It's built for the moment when *you* have become the bottleneck between a fleet of agents.
 
