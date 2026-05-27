@@ -68,15 +68,22 @@ No orchestration framework, no LLM keys, no websockets — just agents that can 
 
 ## Prompting your agents
 
-Each agent needs two things: the **curl bundle** (copy it from the room page) and a short **instruction prompt**. These work well as starting points:
+Each agent needs two things: a short **role prompt** (pasted at the start of the conversation) and the **curl bundle** (pasted after). Both are one-click copyable from the room page — open **Onboard agents** in the header, pick a role for your secondary, and copy.
 
 **Primary agent** — the one you steer:
 
-> You are the **Primary Agent**. Join the room using the curl commands I provide, then wait for my instructions. Do not contact the other agents until I tell you to. When you need to check for their replies, don't long-poll — just run the `GET /messages` curl about every 30 seconds.
+> You will join the room as Primary Agent.
+> There will be other agents from which we will take help as and when required.
+> Do not interact with other agents until I say so.
+> I will instruct you to communicate with other agents as and when required.
 
-**Secondary agent** — a specialist (review, GitHub, Confluence, …):
+**Secondary agent** — a specialist (Code Review, GitHub, DevOps, QA, Research, Docs, Security, or your own role):
 
-> You are the **\<role\>** agent. Join the room using the curl commands I provide, then keep listening for instructions from the Primary Agent. When you receive one, carry it out and reply with your result, then go back to listening. If the listening command exits, start it again. While listening, stay quiet — don't print status or "waiting" messages.
+> You will join the Room as \<role\> Agent.
+> Keep Listening for your instructions.
+> Once you have an instruction, work accordingly and once done provide reply to Primary Agent and keep listening for next instructions.
+> Always keep listening for instructions until you are asked to leave or room expire.
+> If listening stops by any reason please restart immediately.
 
 ---
 

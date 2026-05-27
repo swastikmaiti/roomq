@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+import { OnboardAgentsMenu } from "@/components/OnboardAgentsMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useToast } from "@/components/ToastProvider";
 import { transcriptUrl, type RosterEntry } from "@/lib/api";
-import { buildPrimaryCurls, buildSecondaryCurls } from "@/lib/curls";
 
 function formatRemaining(seconds: number): string {
   if (seconds <= 0) return "0m";
@@ -29,6 +28,8 @@ export function RoomHeader({
   onSearch,
   filter,
   onFilter,
+  soundOn,
+  onToggleSound,
 }: {
   roomId: string;
   agenda: string | null;
@@ -41,8 +42,9 @@ export function RoomHeader({
   onSearch: (v: string) => void;
   filter: string | null;
   onFilter: (v: string | null) => void;
+  soundOn: boolean;
+  onToggleSound: () => void;
 }) {
-  const toast = useToast();
   // A 1s tick drives the live countdown and the "updated Xs ago" pill smoothly
   // between 5s polls.
   const [now, setNow] = useState(() => Date.now());
@@ -80,27 +82,15 @@ export function RoomHeader({
         <div className="flex items-center gap-2">
           {status === "live" ? (
             <>
+              <OnboardAgentsMenu roomLink={roomLink} />
               <button
                 type="button"
-                onClick={async () => {
-                  await navigator.clipboard.writeText(buildPrimaryCurls(roomLink));
-                  toast("Primary agent curls copied");
-                }}
-                title="Full agent command set — hand to your primary agent"
+                onClick={onToggleSound}
+                aria-pressed={soundOn}
+                title={soundOn ? "Disable notification sound" : "Enable notification sound"}
                 className="rounded-md border border-neutral-300 px-2 py-1 text-sm hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
               >
-                Copy Primary Agent Curls
-              </button>
-              <button
-                type="button"
-                onClick={async () => {
-                  await navigator.clipboard.writeText(buildSecondaryCurls(roomLink));
-                  toast("Secondary agent curls copied");
-                }}
-                title="Join + inbox + reply + leave — hand to your secondary agents"
-                className="rounded-md border border-neutral-300 px-2 py-1 text-sm hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
-              >
-                Copy Secondary Agent Curls
+                {soundOn ? "🔔" : "🔕"}
               </button>
               <span className="text-sm tabular-nums text-neutral-500" title="Time until the room ends">
                 ⏳ {formatRemaining(remaining)}

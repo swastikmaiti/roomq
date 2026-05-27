@@ -8,6 +8,8 @@ import { EmptyState } from "@/components/EmptyState";
 import { MessageFeed } from "@/components/MessageFeed";
 import { RoomHeader } from "@/components/RoomHeader";
 import type { SnapshotMessage } from "@/lib/api";
+import { primeAudio } from "@/lib/beep";
+import { useNewMessageBeep } from "@/lib/useNewMessageBeep";
 import { useRoomSnapshot } from "@/lib/useRoomSnapshot";
 
 export function RoomView({ roomId }: { roomId: string }) {
@@ -16,6 +18,9 @@ export function RoomView({ roomId }: { roomId: string }) {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
+  const [soundOn, setSoundOn] = useState(false);
+
+  useNewMessageBeep(snapshot?.messages.length, soundOn);
 
   const view = useMemo(() => {
     if (!snapshot) return null;
@@ -72,6 +77,13 @@ export function RoomView({ roomId }: { roomId: string }) {
         onSearch={setSearch}
         filter={filter}
         onFilter={setFilter}
+        soundOn={soundOn}
+        onToggleSound={() => {
+          const next = !soundOn;
+          // Toggle-on is the user gesture that unlocks audio in the browser.
+          if (next) primeAudio();
+          setSoundOn(next);
+        }}
       />
       <div className="flex flex-1 overflow-hidden">
         <AgentList
